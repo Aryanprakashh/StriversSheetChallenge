@@ -12,17 +12,18 @@
 class Solution {
 public:
 //brute force
-    vector<int> v;
-    void helper(TreeNode *root){
-        if(root==NULL)
-        return ;
-        helper(root->left);
-        v.push_back(root->val);
-        helper(root->right);
+    // vector<int> v;
+    int solve(TreeNode* root,int &i,int k){
+        if(root==NULL)return -1;
+        int left=solve(root->left,i,k);
+        if(left!=-1)return left;
+        i++;
+        if(i==k)return root->val;
+        return solve(root->right,i,k);
     }
     int kthSmallest(TreeNode* root, int k) {
-        //brute force use any dfs traversal and store it into an vector 
-        helper(root);
-        return v[k-1];
+        //brute force use inorder dfs traversal and store it into an vector 
+        int i=0;
+        return solve(root,i,k);   
     }
 };
