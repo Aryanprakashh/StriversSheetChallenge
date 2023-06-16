@@ -11,21 +11,22 @@
  */
 class Solution {
 public:
-    void helper(TreeNode* root,vector<int>& v,int &ans){
+    int sol=-1;
+    void helper(TreeNode* root,int &ans){
         if(root==NULL)
             return;
 
-        helper(root->left,v,ans);
-        if(v.size()!=0 and root->val - v.back()<ans)
-        ans=root->val-v.back();
-        v.push_back(root->val);
-        helper(root->right,v,ans);
+        helper(root->left,ans);
+        if(sol!=-1 and root->val - sol<ans)
+        ans=root->val-sol;
+        sol=(root->val);
+        helper(root->right,ans);
 
     }
     int getMinimumDifference(TreeNode* root) {
-    vector<int> v;
+    // vector<int> v;
     int ans=INT_MAX;
-        helper(root,v,ans);
+        helper(root,ans);
         return ans;
     }
 };
