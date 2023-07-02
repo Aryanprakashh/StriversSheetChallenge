@@ -17,15 +17,11 @@ class Solution{
         //code here
         
         priority_queue<int> q;
-        for(int i=0;i<k;i++){
+        for(int i=0;i<=r;i++){
             q.push(arr[i]);
-        }
-        
-        for(int i=k;i<=r;i++){
-            if(arr[i]<q.top()){
-                q.pop();
-                q.push(arr[i]);
-            }
+            
+            if(q.size()>k)
+            q.pop();
         }
        int ans=q.top();
        return ans;
