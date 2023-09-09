@@ -97,21 +97,24 @@ struct Node {
 class Solution
 {
     public:
-    void helper(Node *root,vector<int> &ans){
+    priority_queue<int,vector<int>,greater<int>> pq;
+    void helper(Node *root,vector<int> &ans,int k){
         if(root==NULL) return ;
         
-        helper(root->left,ans);
-        ans.push_back(root->data);
-        helper(root->right,ans);
+        helper(root->left,ans,k);
+        pq.push(root->data);
+        if(pq.size()>k) pq.pop();
+        helper(root->right,ans,k);
     }
     int kthLargest(Node *root, int k)
     {
         //Your code here
         vector<int> ans;
-        helper(root,ans);
-        return ans[ans.size()-k];
+        helper(root,ans,k);
+        return pq.top();
     }
 };
+
 
 //{ Driver Code Starts.
 
