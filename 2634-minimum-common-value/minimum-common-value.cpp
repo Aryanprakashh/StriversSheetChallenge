@@ -1,21 +1,15 @@
 class Solution {
 public:
     int getCommon(vector<int>& nums1, vector<int>& nums2) {
-        unordered_map<int,int> mp;
-        nums1.erase(unique(nums1.begin(),nums1.end()),nums1.end());
-        nums2.erase(unique(nums2.begin(),nums2.end()),nums2.end());
-        for(auto i:nums1){
-            mp[i]++;
-        }      
-        for(auto i:nums2){
-            mp[i]++;
-        } 
-        int mini=INT_MAX;
-        for(auto j:mp){
-            if(j.second>=2 and j.first<mini){
-                mini=j.first;
-            }
+        //int n,m;
+        int n=nums1.size();
+        int m=nums2.size();
+        int i=0;int j=0;
+        while(i<n&&j<m){
+                if(nums1[i]<nums2[j]) i++;
+                else if(nums1[i]>nums2[j]) j++;
+                else return nums1[i];     
         }
-        return mini==INT_MAX?-1:mini;
+        return -1;
     }
 };
