@@ -7,13 +7,13 @@ public:
     }
     
     void dfs(TreeNode* node, string path, string& smallest) {
-        if (node == nullptr) return;
+        if (node == NULL) return;
         
         // Append current node's character to the path
         path += char('a' + node->val);
         
         // If it's a leaf node, compare and update smallest
-        if (node->left == nullptr && node->right == nullptr) {
+        if (node->left == NULL && node->right == NULL) {
             reverse(path.begin(), path.end());
             if (smallest.empty() || path < smallest) {
                 smallest = path;
