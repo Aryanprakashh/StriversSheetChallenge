@@ -12,9 +12,9 @@ class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         int count=0;
-        priority_queue<int,vector<int>,greater<int>>pq;
-        for(auto it:lists){
-            ListNode *temp=it;
+        priority_queue<int,vector<int>,greater<int>> pq;
+        for(auto i:lists){
+            ListNode *temp=i;
             while(temp!=NULL){
                 pq.push(temp->val);
                 temp=temp->next;
@@ -22,15 +22,15 @@ public:
             }
         }
         if(pq.empty()) return NULL;
-        ListNode *res=new ListNode(0);
-        ListNode *temp=res;
+        ListNode *ans=new ListNode(0);
+        ListNode *res=ans;
 
-        while(count--){
-            ListNode *q=new ListNode(pq.top());
-            temp->next=q;
+        while(!pq.empty()){
+            ListNode *temp=new ListNode(pq.top());
             pq.pop();
-            temp=temp->next;
+            res->next=temp;
+            res=res->next;
         }
-    return res->next;
+    return ans->next;
     }
 };
