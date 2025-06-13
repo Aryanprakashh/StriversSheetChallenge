@@ -12,7 +12,8 @@ public:
     int minimizeMax(vector<int>& nums, int p) {
         int n=nums.size();
         sort(nums.begin(),nums.end());
-        int left=0,right=nums[n-1]-nums[0],res=0;
+        int left=0;
+        int right=nums[n-1]-nums[0],res=0;  // max difference can be = right
         while(left<=right){
             int mid=left+(right-left)/2;
             if(countPairs(nums,p,mid)){
