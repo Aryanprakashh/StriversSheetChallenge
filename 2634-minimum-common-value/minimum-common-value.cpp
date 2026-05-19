@@ -1,15 +1,13 @@
 class Solution {
 public:
     int getCommon(vector<int>& nums1, vector<int>& nums2) {
-        //int n,m;
-        int n=nums1.size();
-        int m=nums2.size();
-        int i=0;int j=0;
-        while(i<n&&j<m){
-                if(nums1[i]<nums2[j]) i++;
-                else if(nums1[i]>nums2[j]) j++;
-                else return nums1[i];     
+        if(nums2.size()>nums1.size()){
+            return getCommon(nums2,nums1);
         }
-        return -1;
+        for(auto i:nums1)
+        if(binary_search(nums2.begin(),nums2.end(),i)){
+            return i;
+        }
+return -1;
     }
 };
